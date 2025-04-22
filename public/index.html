@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>儿童头像转漫画</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>儿童头像转漫画</h1>
+        <input type="file" id="upload" accept="image/*">
+        <button id="generate">生成漫画风格</button>
+        <div class="result">
+            <img id="original" style="display:none;">
+            <img id="result" style="display:none;">
+        </div>
+    </div>
+    <script>
+        document.getElementById('generate').addEventListener('click', async () => {
+            const file = document.getElementById('upload').files[0];
+            if (!file) return alert('请选择头像图片');
+            
+            const formData = new FormData();
+            formData.append('image', file);
+            
+            const response = await fetch('/api/generate', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const { resultImage } = await response.json();
+            document.getElementById('original').src = URL.createObjectURL(file);
+            document.getElementById('original').style.display = 'block';
+            document.getElementById('result').src = resultImage;
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
