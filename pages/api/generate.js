@@ -26,6 +26,8 @@ export default async function handler(req, res) {
             }
         });
 
+        console.log('API响应数据:', response.data); // 添加这行日志
+
         res.status(200).json({ 
             resultImage: response.data.output.image_url 
         });

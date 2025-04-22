@@ -27,7 +27,16 @@
                 body: formData
             });
             
+            if (!response.ok) {
+                const error = await response.json();
+                console.error('API错误:', error);
+                return alert('生成失败: ' + (error.error || '未知错误'));
+            }
+            
             const { resultImage } = await response.json();
+            if (!resultImage) {
+                return alert('未收到有效图片');
+            }
             document.getElementById('original').src = URL.createObjectURL(file);
             document.getElementById('original').style.display = 'block';
             document.getElementById('result').src = resultImage;
