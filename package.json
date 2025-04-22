@@ -1,0 +1,17 @@
+{
+    "name": "my-caricature-app",
+    "version": "1.0.0",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start"
+    },
+    "dependencies": {
+      "formidable": "^2.0.1",
+      "fs": "0.0.1-security",
+      "next": "latest",
+      "node-fetch": "^2.6.1",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  }
